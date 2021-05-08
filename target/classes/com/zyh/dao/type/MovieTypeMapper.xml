@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyh.dao.type.MovieTypeMapper">
+    <select id="getType" resultType="MovieType">
+        select * from movie_mangement.movie_type where type = #{type};
+    </select>
+
+    <select id="getTypeList" resultType="MovieType">
+        select * from movie_mangement.movie_type;
+    </select>
+
+    <delete id="deleteMovieTypeByType" parameterType="String">
+        delete from movie_mangement.movie_type where type = #{type};
+    </delete>
+
+    <insert id="addMovie" parameterType="String">
+        insert into movie_mangement.movie_type (type)
+        VALUES (#{type})
+    </insert>
+
+    <update id="updateMovie" parameterType="com.zyh.pojo.MovieType">
+        update movie_mangement.movie_type
+        set type = #{type}
+        where id = #{id}
+    </update>
+
+</mapper>
+    
+    

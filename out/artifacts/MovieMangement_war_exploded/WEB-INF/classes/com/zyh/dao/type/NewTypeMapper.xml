@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyh.dao.type.NewTypeMapper">
+
+    <select id="getType" resultType="com.zyh.pojo.NewType">
+        select * from movie_mangement.new_type where type = #{type};
+    </select>
+
+    <select id="getTypeList" resultType="com.zyh.pojo.NewType">
+        select * from movie_mangement.new_type;
+    </select>
+
+    <delete id="deleteNewById" parameterType="integer">
+        delete from movie_mangement.new_type where id = #{id};
+    </delete>
+
+    <insert id="insertNew" parameterType="String">
+        insert into movie_mangement.new_type (type)
+        VALUES (#{type})
+    </insert>
+
+    <update id="updateNew" parameterType="com.zyh.pojo.NewType">
+        update movie_mangement.new_type
+        set type = #{type}
+        where id = #{id}
+    </update>
+
+</mapper>
+    
+    

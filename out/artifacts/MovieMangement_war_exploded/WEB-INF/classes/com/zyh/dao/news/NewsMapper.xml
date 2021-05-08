@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyh.dao.news.NewsMapper">
+    <select id="getNewsList" resultType="com.zyh.pojo.News">
+        select * from movie_mangement.news;
+    </select>
+
+    <select id="getNewsById" resultType="News">
+        select * from movie_mangement.news where id = #{id};
+    </select>
+
+    <select id="getNewsByNameOrType" resultType="News" parameterType="String">
+        select * from movie_mangement.news where 1=1
+        <if test="name != ''">
+            and name = #{name}
+        </if>
+        <if test="type != ''">
+            and type = #{type}
+        </if>
+
+    </select>
+
+    <insert id="addNews" parameterType="News">
+        insert into movie_mangement.news (id, name, type, content)
+        VALUES (#{id},#{name},#{type},#{content})
+    </insert>
+
+    <delete id="deleteNewsById" parameterType="integer">
+        delete from movie_mangement.news where id = #{id}
+    </delete>
+
+    <update id="updateNews" parameterType="News">
+        update movie_mangement.news
+        <trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+            <if test="name != '' ">name = #{name},</if>
+            <if test="type != '' ">type = #{type},</if>
+            <if test="content != '' ">content = #{content},</if>
+        </trim>
+    </update>
+
+
+</mapper>
+    
+    

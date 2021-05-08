@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyh.dao.movie.MovieMapper">
+
+    <select id="getMovieList" resultType="Movie">
+        select * from movie_mangement.movie;
+    </select>
+
+    <select id="getMovieById" resultType="Movie">
+        select * from movie_mangement.movie where id = #{id};
+    </select>
+
+    <select id="getMovieByNameOrType" resultType="Movie" parameterType="String">
+        select * from movie_mangement.movie
+        <where>
+            <if test="name != ''">
+                name = #{name}
+            </if>
+            <if test="type != ''">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addMovie" parameterType="Movie">
+        insert into movie_mangement.movie (id, name, type, synopsis, img, video)
+        VALUES (#{id}, #{name},#{type},#{synopsis},#{img},#{video})
+    </insert>
+
+    <delete id="deleteMovieById" parameterType="integer">
+        delete from movie_mangement.movie where id = #{id}
+    </delete>
+
+    <update id="updateMovie" parameterType="Movie">
+        update movie_mangement.movie
+        <trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+            <if test="name != ''">name = #{name},</if>
+            <if test="type != ''">type = #{type},</if>
+            <if test="synopsis != ''">synopsis = #{synopsis},</if>
+        </trim>
+    </update>
+
+</mapper>
+    
+    
