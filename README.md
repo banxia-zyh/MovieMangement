@@ -1,4 +1,4 @@
-# MovieMangement（电影后台管理）
+# MovieMangement（电影后台管理系统）
 
 **项目使用框架：Spring+SpringMVC+Mybatis**
 
